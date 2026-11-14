@@ -68,10 +68,30 @@ export async function loadHeaderFooter() {
   const footerElement = document.querySelector("#main-footer");
 
   renderWithTemplate(headerTemplate, headerElement);
+  
+  // Call the cart count update immediately after rendering the header
+  updateCartCount();
+
   renderWithTemplate(footerTemplate, footerElement, null, () => {
     const lastModifiedElement = document.querySelector("#lastModified");
     if (lastModifiedElement) {
       lastModifiedElement.textContent = `Last Modified: ${document.lastModified}`;
     }
   });
+}
+
+// update the superscript cart count badge
+export function updateCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const cartCountElement = document.querySelector("#cart-count");
+  
+  if (cartCountElement) {
+    const count = cartItems.length;
+    if (count > 0) {
+      cartCountElement.textContent = count;
+      cartCountElement.classList.add("show");
+    } else {
+      cartCountElement.classList.remove("show");
+    }
+  }
 }
