@@ -1,3 +1,4 @@
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
@@ -44,6 +45,9 @@ export default class ProductDetails {
     }
     cartContents.push(this.product);
     setLocalStorage("so-cart", cartContents);
+
+    // Update the superscript badge instantly when clicked
+    updateCartCount();
   }
 
   renderProductDetails(selector) {
