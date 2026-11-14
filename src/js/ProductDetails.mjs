@@ -1,5 +1,4 @@
 import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   // Updated image source to pull PrimaryLarge from the new API structure
