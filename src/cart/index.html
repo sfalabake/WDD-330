@@ -11,6 +11,7 @@
     <title>Sleep Outside | Cart</title>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="../js/cart.js" type="module"></script>
+    <script src="../js/lastModified.js" defer></script>
   </head>
 
   <body>
@@ -24,10 +25,13 @@
 
         <div class="cart-footer hide">
           <p class="cart-total">Total:</p>
+          <a href="/checkout/index.html" class="checkout-button">Checkout</a>
         </div>
       </section>
     </main>
 
-    <footer id="main-footer"></footer>
+    <footer id="main-footer">
+      <p>Last Modified: <span id="lastModified"></span></p>
+    </footer>
   </body>
 </html>

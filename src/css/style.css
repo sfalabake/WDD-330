@@ -319,3 +319,58 @@ footer {
 .cart-count.show {
   display: block;
 }
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.5rem;
+}
+
+.checkout-button {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: #fff;
+  text-decoration: none;
+  font-size: var(--large-font);
+  border-radius: 4px;
+}
+
+.checkout-form {
+  padding: 0.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.checkout-form fieldset {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
+}
+
+.checkout-form label {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+.checkout-form input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.4rem;
+}
+
+.checkout-summary ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-summary p {
+  margin: 0.4rem 0;
+}
