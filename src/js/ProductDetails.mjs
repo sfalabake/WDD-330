@@ -1,4 +1,9 @@
-import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  updateCartCount,
+  alertMessage,
+} from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   // Updated image source to pull PrimaryLarge from the new API structure
@@ -47,6 +52,7 @@ export default class ProductDetails {
 
     // Update the superscript badge instantly when clicked
     updateCartCount();
+    alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
   }
 
   renderProductDetails(selector) {

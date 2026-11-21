@@ -1,4 +1,9 @@
-import { getLocalStorage } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  alertMessage,
+  removeAllAlerts,
+} from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -98,7 +103,23 @@ export default class CheckoutProcess {
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
 
-    const res = await services.checkout(json);
-    console.log(res);
+    try {
+      const res = await services.checkout(json);
+      // eslint-disable-next-line no-console
+      console.log(res);
+      setLocalStorage(this.key, []);
+      location.assign("/checkout/success.html");
+    } catch (err) {
+      removeAllAlerts();
+      if (err.message && typeof err.message === "object") {
+        for (const message of Object.values(err.message)) {
+          alertMessage(message);
+        }
+      } else {
+        alertMessage(err.message || "There was a problem processing your order.");
+      }
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
   }
 }
