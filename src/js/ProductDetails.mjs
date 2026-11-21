@@ -6,6 +6,27 @@ import {
 } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
+  const finalPrice = Number(product.FinalPrice);
+  const retailPrice = Number(product.SuggestedRetailPrice);
+  const hasDiscount = retailPrice > finalPrice;
+
+  let priceMarkup = `<p class="product-card__price">$${finalPrice.toFixed(2)}</p>`;
+
+  if (hasDiscount) {
+    const discountAmount = (retailPrice - finalPrice).toFixed(2);
+    const discountPercent = Math.round(
+      ((retailPrice - finalPrice) / retailPrice) * 100,
+    );
+
+    priceMarkup = `<div class="product-detail__pricing">
+      <span class="product-card__discount-badge">Save ${discountPercent}% ($${discountAmount} off)</span>
+      <p class="product-card__price">
+        <span class="product-card__original-price">$${retailPrice.toFixed(2)}</span>
+        <span class="product-card__final-price">$${finalPrice.toFixed(2)}</span>
+      </p>
+    </div>`;
+  }
+
   // Updated image source to pull PrimaryLarge from the new API structure
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
@@ -14,7 +35,7 @@ function productDetailsTemplate(product) {
       src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
-    <p class="product-card__price">$${product.FinalPrice}</p>
+    ${priceMarkup}
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
     ${product.DescriptionHtmlSimple}
